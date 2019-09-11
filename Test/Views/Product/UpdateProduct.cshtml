@@ -8,7 +8,8 @@
 @using (Html.BeginForm("UpdateSaveProduct", "Product", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
 {
     @Html.AntiForgeryToken()
-    <h4>Update a new product.</h4>
+
+    <h4>Update a product.</h4>
     @Html.Hidden("id", Model.Id)
     <hr/>
 
