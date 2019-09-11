@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Test.Models.ProductViewModel>
+@{
+    ViewBag.Title = "List";
+}
+
+
+@Html.AntiForgeryToken()
+<h4>Product list.</h4>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        {
+            @Html.Hidden("id", item.Id)
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @using (Html.BeginForm("DeleteProduct", "Product",  new {@id = item.Id, FormMethod.Post}))
+                                
+                    {
+                        <input type="submit" class="btn btn-default" value="Delete"/>
+                    }
+                </td>  
+                <td>
+                    @using (Html.BeginForm("UpdateProduct", "Product", new { @id = item.Id, FormMethod.Post }))
+                    {
+                        <input type="submit" class="btn btn-default" value="Update" />
+                    }
+                </td>
+                <td>
+                    @using (Html.BeginForm("DetailsProduct", "Product", new { @id = item.Id, FormMethod.Post }))
+                    {
+                        <input type="submit" class="btn btn-default" value="Details" />
+                    }
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+
+@using (Html.BeginForm("AddProduct", "Product", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Add" />
+        </div>
+    </div>
+}
