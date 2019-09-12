@@ -25,7 +25,7 @@ namespace Test.Controllers
             return View();
         }
 
-        public ActionResult SaveProduct([Bind(Include = "Name,Id,Description")] ProductViewModel productViewModel)
+        public ActionResult SaveProduct([Bind(Include = "Name,Id,Description,SizeId,Price")] ProductViewModel productViewModel)
         {
             
             if (ModelState.IsValid)

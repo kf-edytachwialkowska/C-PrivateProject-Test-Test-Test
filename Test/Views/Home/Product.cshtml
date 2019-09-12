@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Test.Models.ProductViewModel>
+﻿@using Test.Models
+@model IEnumerable<Test.Models.ProductViewModel>
 @{
     ViewBag.Title = "List";
 }
@@ -15,6 +16,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SizeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -27,6 +34,12 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SizeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
                    @using (Html.BeginForm("DeleteProduct", "Product",  new {@id = item.Id, FormMethod.Post}))
